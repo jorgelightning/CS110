@@ -17,8 +17,8 @@ def main():
 	back_to_begin = 'y'
 	while(back_to_begin == 'y'):
 		print("Welcome to the Calculator Program!")
-		num1 = int(input("Please enter variable 1: "))
-		num2 = int(input("Please enter variable 2: "))
+		num1 = int(input("Please enter your first  numerical value: "))
+		num2 = int(input("Please enter your second numerical value: "))
 
 		math_operation_choice = input("Please enter a mathematical operation (+,-,*,/): ")
 		while math_operation_choice not in ['+','-','*','/']:
