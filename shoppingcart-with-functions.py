@@ -4,12 +4,20 @@ def displayMenu():
 	global total, g_total
 	print("Welcome to the Healthy Fruits Shop!")
 	raspberries = input("Please enter how many pounds of raspberries you would like to buy ($1.75 per pound): ")
+	while raspberries.isdigit() != True:	
+		raspberries = input("Please enter a valid input: ")
 	raspberries = float(raspberries) * 1.75
 	strawberries = input("Please enter how many pounds of strawberries you would like to buy ($1.25 per pound):" )
+	while strawberries.isdigit() != True:	
+		strawberries = input("Please enter a valid input: ")
 	strawberries = float(strawberries) * 1.25
 	apples = input("Please enter how many apples you would like to buy ($0.5 per apple): ")
+	while apples.isdigit() != True:	
+		apples = input("Please enter a valid input: ")
 	apples = float(apples) * 0.50
 	mangoes = input("Please enter how many mangoes you would like to buy ($1.75 per mango): ")
+	while mangoes.isdigit() != True:	
+		mangoes = input("Please enter a valid input: ")
 	mangoes = float(mangoes) * 1.75
 
 	total = raspberries + strawberries + apples + mangoes
@@ -59,11 +67,17 @@ def calculateChange():
 			print(int(pennies), "of a penny")
 	else:
 		print("Have a nice day!")
-
-
-displayMenu()
-getPayment()
-calculateChange()
+def main():
+	continues = 'y'
+	while(continues != 'n'):
+		displayMenu()
+		getPayment()
+		calculateChange()
+		print('')
+		continues = input("Do you want to continue? y/n: ")
 	
+main()
+
+
 
 
