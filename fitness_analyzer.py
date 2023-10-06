@@ -2,7 +2,7 @@
 
 def main():
 	infile = open('fitness-data.txt',"r")
-	outfile = open('fitness-date-result.txt', 'w')
+	outfile = open('results.txt', 'w')
 	steps_total, steps_max = steps_analyzer(infile)
 	print('The total number of steps taken this week were:',steps_total)
 	print('The maximum number of steps taken this week were:',steps_max)
