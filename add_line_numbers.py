@@ -1,16 +1,13 @@
-#Lab 4 - Files and Functions    
-#Part 1 - Add Line Numbers 
-
-
 def main():
 	fileName = input('Please enter the name of the file including the extension: ')
 	fileOpen = open(str(fileName),"r")
 	
-	#print(fileOpen.read())
+	#Creating next line for output to be clean 
 	print('')
 	
 	line_processor(fileOpen)
 
+#This is my important function to iterate through the lines and append line numbers 
 def line_processor(fileOpen):
 	line_number = 1
 	for line in fileOpen:

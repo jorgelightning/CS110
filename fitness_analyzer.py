@@ -1,5 +1,3 @@
-#Lab 4 - Files and Functions Part 2
-
 def main():
 	infile = open('fitness-data.txt',"r")
 	outfile = open('results.txt', 'w')
@@ -8,19 +6,23 @@ def main():
 	sleep_total, sleep_min = sleep_analyzer(infile)
 	write_results_file(outfile,steps_total,steps_max,heart_rate_average,sleep_total,sleep_min)
 
+#To get the display and write to file, I had to bring variables in this function 
 def write_results_file(outfile,steps_total,steps_max,heart_rate_average,sleep_total,sleep_min):
+
 	#Setting up for writing and printing 
 	wsteps_total = str(f'The total number of steps taken this week were: {steps_total} .\n')
 	wsteps_max = str(f'The maximum number of steps taken this week were: {steps_max} .\n')
 	wheart_rate_average = str(f'The average heart rate for the week was: {"%.2f" % heart_rate_average} .\n')
 	wsleep_total = str(f'The total number of hours slept this week was: {sleep_total} .\n')
 	wsleep_min = str(f'The least amount of hours slept this week was: {sleep_min} .\n')
+
 	#writing to file 
 	outfile.write(wsteps_total)
 	outfile.write(wsteps_max)
 	outfile.write(wheart_rate_average)
 	outfile.write(wsleep_total)
 	outfile.write(wsleep_min)
+
 	#displaying on screen 
 	print('The total number of steps taken this week were:',steps_total)
 	print('The maximum number of steps taken this week were:',steps_max)
@@ -28,6 +30,7 @@ def write_results_file(outfile,steps_total,steps_max,heart_rate_average,sleep_to
 	print('The total number of hours slept this week was:',sleep_total)
 	print('The least amount of hours slept this week was:',sleep_min)
 
+#These functions below I use to iterate through 7 lines and do some math, I used list to find max and min 
 def steps_analyzer(infile):
 	steps_total = 0
 	line_number = 1
