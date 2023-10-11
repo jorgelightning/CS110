@@ -1,5 +1,4 @@
 #Reverse a list
-#Jorge
 
 #set of test lists
 inputList1 = [1, 2, 3, 4]
