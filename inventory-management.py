@@ -24,14 +24,12 @@ def main():
             add_inventory(infileA)
         
         if choices == 2:
-            del_inventory(format_into_list,infileR)
+            del_inventory(finding_index)
             print('Delete a specific item from the inventory')
         if choices == 3: 
             print('Update the price or quantity for an item in the inventory')
 
-        #format_into_list(infileR)
-        #format_into_csv(infileRR)
-        cont = input('Would you like to continue? (y/n)')
+        cont = input('\n'+'Would you like to continue? (y/n)')
 
 def display_inventory(infileR):
     with infileR as file:
@@ -55,36 +53,27 @@ def total_inventory_value():
         print('\n'+'Price total:',sumPrice)
         print('Quantity total:', sumQuantity)
 
-    
-
 def add_inventory(infileA):
     userInput = input('\n'+'Please enter inventory to add seperated in commas (name,price,quantity)')
     with infileA as file:
             newLine = ''.join(userInput) + '\n'
             file.write(newLine)
 
-def format_into_list(infileR):
-    with infileR as file:
-        rowList = []
-        for line in file:
-            columns = line.strip().split(',')
-            rowList.append(columns)
-    #find_index = rowList.index('rice')
-    print(rowList)
-    return rowList
+def finding_index(selectedList,searchStr):
+    for nestedlist in selectedList:
+        if searchStr in nestedlist:
+            return (selectedList.index(nestedlist))
 
-def format_into_csv(infileRR):
-    with infileRR as file:
-        for line in file:
-            line = line.replace(']','\n').replace('[','').replace('\'','')
-            return line
+def del_inventory(finding_index):
+    userInput = str(input('\n'+'Please enter a product name is delete: '))
 
-def del_inventory(format_into_list,infileR):
-    userInput = int(input('\n'+'Please enter a row number to delete: '))
-    with infileR as file:
+    with open('inventory.csv', 'r') as file:
         reader = csv.reader(file)
         rows = list(reader)
-    del rows[userInput]
+    
+    userInput_indexLocation = int(finding_index(rows,userInput))
+
+    del rows[userInput_indexLocation]
     
     infileW = open('inventory.csv', 'w')
     with infileW as f:
