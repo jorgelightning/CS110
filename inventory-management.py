@@ -1,5 +1,3 @@
-#Lab 5 - Lists and Files
-#Jorge Portillo
 import csv
 
 def main():
