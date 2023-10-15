@@ -1,3 +1,4 @@
+
 import csv
 
 def main():
@@ -20,13 +21,13 @@ def main():
 
         if choices == 1:
             add_inventory()
-            print('**Added inventory**')
+            print('**Added item**')
         if choices == 2:
             del_inventory(finding_index)
-            print('**The item has been deleted**')
+            print('**Deleted item**')
         if choices == 3: 
-            print('Update the price or quantity for an item in the inventory')
             update_inventory(finding_index)
+            print('**Updated item**')
 
         cont = input('\n'+'Would you like to continue? (y/n): ')
 
