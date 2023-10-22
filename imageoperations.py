@@ -11,10 +11,10 @@ def main():
         copyImage(inputImage, imageWidth, imageHeight)
 
     if(userAction == 1):
-        imageFlipper(inputImage, imageWidth, imageHeight)
+        flipVertical(inputImage, imageWidth, imageHeight)
 
     if(userAction == 2):
-        imageGrayScale(inputImage)
+        makeGrayscale(inputImage)
 
 
 
@@ -29,18 +29,18 @@ def copyImage(inputImage, imageWidth, imageHeight):
 
     copyImageOutput.save("/Users/notion/Desktop/CS110/project2/copy.png")
 
-def imageFlipper(inputImage, imageWidth, imageHeight):
+def flipVertical(inputImage, imageWidth, imageHeight):
 
     imageWidth, imageHeight = inputImage.size
     imageFlipped = Image.new(inputImage.mode, (imageWidth, imageHeight))
 
     for x in range(imageWidth):
         for y in range(imageHeight):
-            imageFlipped.putpixel((x, y), inputImage.getpixel((imageWidth - x - 1, y)))
+            imageFlipped.putpixel((x, imageHeight - y - 1), inputImage.getpixel((x, y)))
 
     imageFlipped.save("/Users/notion/Desktop/CS110/project2/flipped_image.png")
 
-def imageGrayScale(inputImage):
+def makeGrayscale(inputImage):
 
     imagePixel = inputImage.getdata()
 
