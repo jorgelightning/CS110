@@ -6,7 +6,7 @@ def main():
     inputImage = Image.open('/Users/notion/Desktop/CS110/project2/'+imageName)
     inputSecret = Image.open('/Users/notion/Desktop/CS110/project2/'+imageSecret)
     
-    #Display menu and input validation, user will be repeated asked if input is incorrect 
+#Display menu and input validation, user will be repeated asked if input is incorrect 
     while True:
         try:
             userAction = int(input('\nWelcome to image Operation program!\n\nWhat action would you like to take?\n(0)copy image (1)flip image (2)find pattern (3)make grey scale: '))
@@ -18,7 +18,7 @@ def main():
 
     imageWidth, imageHeight = inputImage.size
 
-    #integers action selection
+#integers action selection
     if(userAction == 0):
         copyImage(inputImage, imageWidth, imageHeight)
 
@@ -31,7 +31,7 @@ def main():
     if(userAction == 3):
         makeGrayscale(inputImage)
 
-# Creates a copy of an image given the image variable, its width, and height
+#Creates a copy of an image given the image variable, its width, and height
 def copyImage(inputImage, imageWidth, imageHeight):
     copyImageOutput = Image.new('RGB', (imageWidth, imageHeight), 'white')
 
@@ -54,10 +54,10 @@ def flipVertical(inputImage, imageWidth, imageHeight):
 
     imageFlipped.save("/Users/notion/Desktop/CS110/project2/flipped_image.png")
 
-    #For findPattern I used .getdata to get all the pixel values 
-    #then iterate through each pixel and when I found red (255,0,0) I would change it to (255,255,255)
-    #add the new pixel value into my list (secretPixelData)
-    #I would turn my new list into a new image using .putdata 
+#For findPattern I used .getdata to get all the pixel values 
+#then iterate through each pixel and when I found red (255,0,0) I would change it to (255,255,255)
+#add the new pixel value into my list (secretPixelData)
+#I would turn my new list into a new image using .putdata 
 def findPattern(inputSecret):
 
     imagePixel = inputSecret.getdata()
