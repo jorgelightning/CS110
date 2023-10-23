@@ -1,19 +1,18 @@
 from PIL import Image
 
 def main():
- #   imageName = input('What image should you like to take action on (enter image name and exention): ')
     imageName = 'usfca_logo.png'
     imageSecret = 'red-image.png'
     inputImage = Image.open('/Users/notion/Desktop/CS110/project2/'+imageName)
     inputSecret = Image.open('/Users/notion/Desktop/CS110/project2/'+imageSecret)
     while True:
         try:
-            userAction = int(input('\nWelcome to image Operation program!\n\nWhat action would you like to take?\n(0)copy image (1)flip image (2)find pattern (3)make grey scale\n'))
+            userAction = int(input('\nWelcome to image Operation program!\n\nWhat action would you like to take?\n(0)copy image (1)flip image (2)find pattern (3)make grey scale: '))
             if not (0 <= userAction <= 3):
-                raise ValueError('Invalid number selection. Please enter number 0-3.')
+                raise ValueError('Invalid number selection. Please enter number 0-3')
             break
         except ValueError:
-            print('Please enter a valid integer from the selection.\nTRY AGAIN...\n\n')
+            print('\n\n### Please enter a valid integer from the selection (0-3). TRY AGAIN... ##\n\n')
 
     imageWidth, imageHeight = inputImage.size
 
