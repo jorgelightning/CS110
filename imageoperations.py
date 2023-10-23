@@ -6,7 +6,15 @@ def main():
     imageSecret = 'red-image.png'
     inputImage = Image.open('/Users/notion/Desktop/CS110/project2/'+imageName)
     inputSecret = Image.open('/Users/notion/Desktop/CS110/project2/'+imageSecret)
-    userAction = int(input('\nWelcome to image Operation program!\n\nWhat action would you like to take?\n(0)copy image (1)flip image (2)find pattern (3)make grey scale\n'))
+    while True:
+        try:
+            userAction = int(input('\nWelcome to image Operation program!\n\nWhat action would you like to take?\n(0)copy image (1)flip image (2)find pattern (3)make grey scale\n'))
+            if not (0 <= userAction <= 3):
+                raise ValueError('Invalid number selection. Please enter number 0-3.')
+            break
+        except ValueError:
+            print('Please enter a valid integer from the selection.\nTRY AGAIN...\n\n')
+
     imageWidth, imageHeight = inputImage.size
 
     if(userAction == 0):
@@ -16,12 +24,10 @@ def main():
         flipVertical(inputImage, imageWidth, imageHeight)
 
     if(userAction == 2):
-        findPattern(inputImage, imageWidth, imageHeight)
+        findPattern(inputSecret, imageWidth, imageHeight)
     
     if(userAction == 3):
         makeGrayscale(inputImage)
-
-
 
 # Creates a copy of an image given the image variable, its width, and height
 def copyImage(inputImage, imageWidth, imageHeight):
