@@ -3,7 +3,9 @@ from PIL import Image
 def main():
  #   imageName = input('What image should you like to take action on (enter image name and exention): ')
     imageName = 'usfca_logo.png'
+    imageSecret = 'red-image.png'
     inputImage = Image.open('/Users/notion/Desktop/CS110/project2/'+imageName)
+    inputSecret = Image.open('/Users/notion/Desktop/CS110/project2/'+imageSecret)
     userAction = int(input('\nWelcome to image Operation program!\n\nWhat action would you like to take?\n(0)copy image (1)flip image (2)find pattern (3)make grey scale\n'))
     imageWidth, imageHeight = inputImage.size
 
@@ -14,6 +16,9 @@ def main():
         flipVertical(inputImage, imageWidth, imageHeight)
 
     if(userAction == 2):
+        findPattern(inputImage, imageWidth, imageHeight)
+    
+    if(userAction == 3):
         makeGrayscale(inputImage)
 
 
@@ -39,6 +44,19 @@ def flipVertical(inputImage, imageWidth, imageHeight):
             imageFlipped.putpixel((x, imageHeight - y - 1), inputImage.getpixel((x, y)))
 
     imageFlipped.save("/Users/notion/Desktop/CS110/project2/flipped_image.png")
+
+
+def findPattern(inputSecret, imageWidth, imageHeight):
+    patternImage = Image.new("RGB", (imageWidth, imageHeight))
+    
+    for x in range(imageWidth):
+        for y in range(imageHeight):
+            imageSecret = inputSecret.getpixel((x,y))
+            if imageSecret == (255, 0, 0):
+                imageSecret = (255, 255, 255)
+            patternImage.putpixel((x,y), imageSecret)
+    
+    patternImage.save("/Users/notion/Desktop/CS110/project2/secret_image.png")
 
 def makeGrayscale(inputImage):
 
