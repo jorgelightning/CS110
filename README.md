@@ -1,6 +1,5 @@
-# Project Title
+#  Micro projects
 
- Micro projects
 
 ## Description
 
