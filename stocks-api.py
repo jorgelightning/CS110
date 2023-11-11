@@ -8,14 +8,11 @@ app.debug = True
 
 def getStock(symbol):
     baseURL = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&datatype=csv'
-    keyPart = '&apikey=' + " " #Add API key
+    keyPart = '&apikey=' + "" #Add API key
     symbolPart = '&symbol=' + symbol
-    seriesType = '&series_type=' + 'high'
-    stockResponse = requests.get(baseURL+keyPart+symbolPart+seriesType)
+    stockResponse = requests.get(baseURL+keyPart+symbolPart)
     return stockResponse.text  #Return only text part of response
 
-stockString = getStock('ibm')
-stockList = stockString.split(',')
     
 @app.route('/')
 def form_example():
@@ -49,20 +46,24 @@ def form_input():
     option3 = str(request.form.getlist('option3'))
     option4 = str(request.form.getlist('option4'))
     userInput = userInput.upper()
-    stock = getStock(userInput)
+    stockString = getStock(userInput)
     html = ''
-    html += '<html>'
+    html += '<html>'    
     html += '<title>;)</title>'
     html += '<body bgcolor="lightgrey">'
-    html += '<h2> The value for ' + userInput + ' is as follows: </h2>'
-    if option1 == '[\'open\']':
-        html += '<p>Opening Price: ' + stockList[10] + '</p>'
-    if option2 == '[\'high\']':
-        html += '<p>High: ' + stockList[11] + '</p>'
-    if option3 == '[\'low\']':
-        html += '<p>Low: ' + stockList[12] + '</p>'
-    if option4 == '[\'price\']':
-        html += '<p>Current Price: ' + stockList[13] + '</p>'
+    if stockString != '{}':
+        stockList = stockString.split(',')
+        html += '<h2> The value for ' + userInput + ' is as follows: </h2>'
+        if option1 == '[\'open\']':
+            html += '<p>Opening Price: ' + stockList[10] + '</p>'
+        if option2 == '[\'high\']':
+            html += '<p>High: ' + stockList[11] + '</p>'
+        if option3 == '[\'low\']':
+            html += '<p>Low: ' + stockList[12] + '</p>'
+        if option4 == '[\'price\']':
+            html += '<p>Current Price: ' + stockList[13] + '</p>'
+    else:
+        html += '<p> ERROR! PLEASE ENTER VALID SYMBOL! </p>'
     html += '<a href="/">Back</a>'
     html += '</body>'
     html += '</html>'
