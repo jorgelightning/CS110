@@ -5,39 +5,45 @@ import requests
 app = Flask(__name__)
 app.debug = True
 
-
+#given code to grab responses from stock API through symbol input
 def getStock(symbol):
     baseURL = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&datatype=csv'
-    keyPart = '&apikey=' + "" #Add API key
+    keyPart = '&apikey=' + "FF08QG0OG9019Q4C" #Add API key
     symbolPart = '&symbol=' + symbol
     stockResponse = requests.get(baseURL+keyPart+symbolPart)
     return stockResponse.text  #Return only text part of response
 
-    
+
+#created a checkbox and input for text and assigned variables for 
+#them to access later 
+#I used triple " so I don't need to use html += so many times and easy to edit html code
 @app.route('/')
 def form_example():
-    html = ''
-    html += '<html>'
-    html += '<title>D:</title>'
-    html += '<body bgcolor="lightgrey">'
-    html += '<form method="POST" action="results">'
-    html += '<h2>Stock symbols: <input type="text" name="userInput" /></h2>'
-    html += '<input type="checkbox" id="option1" name="option1" value="open">'
-    html += '<label for="option1">Opening Price</label><br>'
-    html += '<input type="checkbox" id="option2" name="option2" value="high">'
-    html += '<label for="option2">High</label><br>'
-    html += '<input type="checkbox" id="option3" name="option3" value="low">'
-    html += '<label for="option3">Low</label><br>'
-    html += '<input type="checkbox" id="option4" name="option4" value="price">'
-    html += '<label for="option4">Current Price</label><br><br>'
-    html += '<input type="submit" value="Submit">'
-    html += '</form>'
-    html += '</body>'
-    html += '</html>'
+    html = """
+    <html>
+    <title>D:</title>
+    <body bgcolor="lightgrey">
+    <form method="POST" action="results">
+    <h2>Stock symbols: <input type="text" name="userInput" /></h2>
+    <input type="checkbox" id="option1" name="option1" value="open">
+    <label for="option1">Opening Price</label><br>
+    <input type="checkbox" id="option2" name="option2" value="high">
+    <label for="option2">High</label><br>
+    <input type="checkbox" id="option3" name="option3" value="low">
+    <label for="option3">Low</label><br>
+    <input type="checkbox" id="option4" name="option4" value="price">
+    <label for="option4">Current Price</label><br><br>
+    <input type="submit" value="Submit">
+    </form>
+    </body>
+    </html>
+    """ 
     return html
   
 
-  
+#using the variable assigned I would used to add symbol into getStock()
+#the option# are used if true would show in the result page 
+#error checking is used when the response is empty {}
 @app.route('/results', methods=['POST'])
 def form_input():
     userInput = request.form['userInput']
@@ -68,8 +74,6 @@ def form_input():
     html += '</body>'
     html += '</html>'
     return html
-  
-  
 
 if __name__ == '__main__':
   app.run()
